@@ -1,7 +1,11 @@
 package com.example.fw;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.openqa.selenium.By;
 import com.example.tests.ContactData;
+import com.example.tests.GroupData;
+import org.openqa.selenium.WebElement;
 
 public class ContactHelper extends HelperBase {
 
@@ -10,7 +14,7 @@ public class ContactHelper extends HelperBase {
 	}
 
 	public void returnToContactsPage() {
-	click(By.linkText("add next"));
+	click(By.linkText("home page"));
 	  }
 
 	public void submitContactCreation() {
@@ -42,12 +46,25 @@ public class ContactHelper extends HelperBase {
 	}
 
 	public void selectContactForEditByIndex(int index) {
-		click(By.xpath(".//*[@id='maintable']/tbody/tr["+(index+1)+"]/td[7]/a/img"));		
+		click(By.xpath(".//*[@id='maintable']/tbody/tr["+(index+2)+"]/td[7]/a/img"));		
 	}
 
 	public void submitContactModification(){
 		click(By.xpath("//input[@value='Update']"));
 		
+	}
+
+	public List<ContactData> getContacts() {
+		List <ContactData> contacts = new ArrayList<ContactData>();
+		List<WebElement> rows = driver.findElements(By.name("entry"));
+		for (WebElement row : rows) {
+			ContactData contact = new ContactData();
+			List<WebElement> cells = row.findElements(By.tagName("td"));
+			contact.firstName = cells.get(2).getText();
+			contact.lastName= cells.get(1).getText();
+			contacts.add(contact);
+			}		
+		return contacts;
 	}
 
 }
