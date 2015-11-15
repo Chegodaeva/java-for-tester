@@ -30,10 +30,10 @@ public class TestBase {
 		List<Object[]> list = new ArrayList<Object[]>();
 		
 		for (int i = 0; i < 5; i++) {
-			GroupData group = new GroupData();
-			group.name = generateRandomString();
-			group.header = generateRandomString();
-			group.footer = generateRandomString();
+			GroupData group = new GroupData()
+			.withName(generateRandomString())
+			.withHeader(generateRandomString())
+			.withFooter(generateRandomString());
 			list.add(new Object[]{group});
 			
 		}
@@ -54,10 +54,10 @@ public class TestBase {
 		List<Object[]> list = new ArrayList<Object[]>();
 		
 		for (int i = 0; i < 5; i++) {
-			ContactData contact = new ContactData();
-			contact.firstName = generateRandomString();
-		    contact.lastName = generateRandomString();
-			list.add(new Object[]{contact});
+			ContactData contact = new ContactData()
+			.withFirstName(generateRandomString())
+			.withLastName(generateRandomString());
+		list.add(new Object[]{contact});
 				
 		}
 		return list.iterator();	  
